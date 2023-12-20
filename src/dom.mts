@@ -11,10 +11,21 @@ export const extStyle = () =>
       `
   )
 
-export const tweetTextSpan = (text: string) =>
+export const tweetTextBold = "r-b88u0q"
+
+export const tweetTextSpan = (
+  text: string,
+  {
+    bold = false,
+  }: {
+    bold?: boolean
+  } = {}
+) =>
   span(
     {
-      class: "css-1qaijid r-bcqeeo r-qvutc0 r-1tl8opc",
+      class:
+        "css-1qaijid r-bcqeeo r-qvutc0 r-1tl8opc" +
+        (bold ? " " + tweetTextBold : ""),
       style: "text-overflow: unset;",
     },
     text

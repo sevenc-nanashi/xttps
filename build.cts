@@ -40,7 +40,7 @@ const buildJs = async (
   )
   const options = {
     bundle: true,
-    minify: true,
+    minify: production,
     sourcemap: !production,
     target: ["es2020"],
   }

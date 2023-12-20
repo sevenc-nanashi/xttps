@@ -1,5 +1,6 @@
 import packageJson from "../package.json"
 import * as dom from "./dom.mjs"
+const spanClasses = ["css-1qaijid", "r-bcqeeo", "r-qvutc0", "r-1tl8opc"]
 
 export const main = async () => {
   const mainElement = document.querySelector("main[role=main]")
@@ -9,51 +10,128 @@ export const main = async () => {
   }
   document.head.appendChild(dom.extStyle())
 
+  let respondCount = 0
   const replacer = new MutationObserver(async () => {
     await new Promise((resolve) => requestAnimationFrame(resolve))
-    const tweets = document.querySelectorAll(
-      "div[data-testid='tweetText']:not([data-xttps-replaced])"
-    )
-    for (const tweet of Array.from(tweets)) {
-      const spans = tweet.querySelectorAll(
-        'span[class="css-1qaijid r-bcqeeo r-qvutc0 r-1tl8opc"]'
-      )
-      for (const span of Array.from(spans)) {
-        const text = span.textContent
-        if (!text) continue
-        const urls = Array.from(text.matchAll(/ttps?:\/\/[^\s　]+/g))
-        if (urls.length === 0) continue
+    if (respondCount > 0) return
+    respondCount++
+    while (respondCount > 0) {
+      try {
+        const tweets = document.querySelectorAll(
+          "div[data-testid='tweetText']:not([data-xttps-replaced])"
+        )
+        for (const tweet of Array.from(tweets)) {
+          tweet.setAttribute("data-xttps-replaced", "true")
+          const spanSegments: HTMLSpanElement[][] = [[]]
+          for (const tweetElement of Array.from(tweet.childNodes)) {
+            if (!(tweetElement instanceof HTMLSpanElement)) {
+              spanSegments.push([])
+              continue
+            }
 
-        const textSegments: string[] = []
-        let lastIndex = 0
-        for (const url of urls) {
-          const before = text.substring(lastIndex, url.index)
-          textSegments.push(before)
-          lastIndex = url.index + url[0].length
-          textSegments.push(url[0])
-        }
-        const after = text.substring(lastIndex)
-        textSegments.push(after)
-        let index = -1
-        const spanNextSibling = span.nextSibling
-        for (const segment of textSegments) {
-          index++
-          if (segment.match(/^ttps?:\/\//)) {
-            span.parentElement?.insertBefore(
-              dom.tweetTextLink("h" + segment),
-              spanNextSibling
+            if (spanClasses.every((c) => tweetElement.classList.contains(c))) {
+              spanSegments[spanSegments.length - 1].push(tweetElement)
+            } else {
+              spanSegments.push([])
+            }
+          }
+
+          for (const spanSegment of Array.from(
+            spanSegments.filter((s) => s.length > 0)
+          )) {
+            const text = spanSegment.map((s) => s.textContent).join("")
+            if (!text) continue
+            const spanSegmentLength: {
+              start: number
+              length: number
+              type: "text" | "bold"
+              text: string
+            }[] = []
+            let spanSegmentIndex = 0
+            for (const span of spanSegment) {
+              spanSegmentLength.push({
+                start: spanSegmentIndex,
+                length: span.textContent.length,
+                type: span.classList.contains(dom.tweetTextBold)
+                  ? "bold"
+                  : "text",
+                text: span.textContent,
+              })
+              spanSegmentIndex += span.textContent.length
+            }
+
+            const urls = Array.from(text.matchAll(/ttps?:\/\/[^\s　]+/g))
+            if (urls.length === 0) continue
+            const textSegments: {
+              text: string
+              type: "text" | "bold" | "link"
+            }[] = []
+            let lastIndex = 0
+            for (const url of urls) {
+              const correspondingSpans = spanSegmentLength.filter(
+                (s) => s.start < url.index + url[0].length
+              )
+              if (correspondingSpans.length === 0) continue
+              for (const span of correspondingSpans) {
+                if (span.start < url.index) {
+                  textSegments.push({
+                    text: span.text.substring(0, url.index - span.start),
+                    type: span.type,
+                  })
+                }
+              }
+              lastIndex = url.index + url[0].length
+              textSegments.push({
+                text: url[0],
+                type: "link",
+              })
+            }
+            const lastText = text.substring(lastIndex)
+            if (lastText) {
+              textSegments.push({
+                text: lastText,
+                type: spanSegmentLength[spanSegmentLength.length - 1].type,
+              })
+            }
+            console.debug(
+              ...[
+                `Fixing ttps:\n%c${textSegments.map((s) => s.text).join("%c")}`,
+                ...textSegments.map((s) =>
+                  s.type === "link"
+                    ? "color: #1d9bf0; text-decoration: underline; font-weight: auto;"
+                    : s.type === "bold"
+                      ? "color: auto; font-weight: bold; text-decoration: underline;"
+                      : "color: auto; font-weight: auto; text-decoration: auto;"
+                ),
+              ]
             )
-          } else {
-            span.parentElement?.insertBefore(
-              dom.tweetTextSpan(segment),
-              spanNextSibling
-            )
+
+            let index = -1
+            const spanNextSibling =
+              spanSegment[spanSegment.length - 1].nextSibling
+            for (const segment of textSegments) {
+              index++
+              if (segment.type === "link") {
+                tweet.insertBefore(
+                  dom.tweetTextLink("h" + segment.text),
+                  spanNextSibling
+                )
+              } else {
+                tweet.insertBefore(
+                  dom.tweetTextSpan(segment.text, {
+                    bold: segment.type === "bold",
+                  }),
+                  spanNextSibling
+                )
+              }
+            }
+
+            spanSegment.forEach((s) => s.remove())
           }
         }
-
-        span.remove()
+      } finally {
+        respondCount--
       }
-      tweet.setAttribute("data-xttps-replaced", "true")
     }
   })
 
