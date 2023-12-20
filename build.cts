@@ -61,7 +61,7 @@ const pack = async (browser: "chrome" | "firefox") => {
 }
 
 ;(async () => {
-  console.log("Building...")
+  console.log(`Building... (Version: ${packageJson.version})`)
   const packing = process.argv.includes("--pack")
   await buildJs("firefox", { production: packing })
   await buildJs("chrome", { production: packing })
