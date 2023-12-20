@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "types": ["node", "@types/webextension-polyfill"],
+    "lib": ["es2018", "dom"],
+    "esModuleInterop": true
+  }
+}
