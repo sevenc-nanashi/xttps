@@ -10,6 +10,11 @@ TODO. I'll change here when I publish this extension to Firefox Add-ons and Chro
 
 ## Development
 
+### Requirements
+
+- [pnpm](https://pnpm.io/)
+- [Node.js](https://nodejs.org/) (v18)
+
 ```
 # Live re-build
 pnpm dev
