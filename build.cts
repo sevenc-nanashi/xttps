@@ -16,7 +16,7 @@ const buildJs = async (
   await writeFile(
     `dist/${browser}/manifest.json`,
     JSON.stringify({
-      manifest_version: 3,
+      manifest_version: browser === "chrome" ? 3 : 2,
       name: "Xttps",
       version: packageJson.version,
       description: packageJson.description,
@@ -31,6 +31,11 @@ const buildJs = async (
           js: ["main.mjs"],
         },
       ],
+      browser_specific_settings: {
+        gecko: {
+          id: "xttps@sevenc7c.com",
+        },
+      },
     })
   )
   const options = {
