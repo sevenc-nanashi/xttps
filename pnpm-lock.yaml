@@ -3,11 +3,13 @@ lockfileVersion: 5.4
 specifiers:
   '@samrum/vite-plugin-web-extension': ^5.1.0
   '@types/adm-zip': ^0.5.5
+  '@types/async-lock': ^1.4.2
   '@types/node': ^20.10.5
   '@types/webextension-polyfill': ^0.10.7
   '@typescript-eslint/eslint-plugin': ^6.15.0
   '@typescript-eslint/parser': ^6.15.0
   adm-zip: ^0.5.10
+  async-lock: ^1.4.0
   esbuild: ^0.19.10
   eslint: ^8.56.0
   eslint-config-prettier: ^9.1.0
@@ -19,11 +21,13 @@ specifiers:
   vanjs-core: ^1.2.7
 
 dependencies:
+  async-lock: 1.4.0
   vanjs-core: 1.2.7
 
 devDependencies:
   '@samrum/vite-plugin-web-extension': 5.1.0_vite@5.0.10
   '@types/adm-zip': 0.5.5
+  '@types/async-lock': 1.4.2
   '@types/node': 20.10.5
   '@types/webextension-polyfill': 0.10.7
   '@typescript-eslint/eslint-plugin': 6.15.0_6airgfur4cim7d6dzxc5qxbguu
@@ -506,6 +510,10 @@ packages:
       '@types/node': 20.10.5
     dev: true
 
+  /@types/async-lock/1.4.2:
+    resolution: {integrity: sha512-HlZ6Dcr205BmNhwkdXqrg2vkFMN2PluI7Lgr8In3B3wE5PiQHhjRqtW/lGdVU9gw+sM0JcIDx2AN+cW8oSWIcw==}
+    dev: true
+
   /@types/chrome/0.0.233:
     resolution: {integrity: sha512-T3HUW8LDhHfYPbUkOZilhnqX04sZqEFIQO0OIG8byZ7PBIk2jYys1AkNg56UbtKbsh3dABmOniK+0Q3oyo7Sxg==}
     dependencies:
@@ -755,6 +763,10 @@ packages:
     resolution: {integrity: sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==}
     engines: {node: '>=8'}
     dev: true
+
+  /async-lock/1.4.0:
+    resolution: {integrity: sha512-coglx5yIWuetakm3/1dsX9hxCNox22h7+V80RQOu2XUUMidtArxKoZoOtHUPuR84SycKTXzgGzAUR5hJxujyJQ==}
+    dev: false
 
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}

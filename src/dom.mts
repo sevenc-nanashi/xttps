@@ -12,6 +12,12 @@ export const extStyle = () =>
   )
 
 export const tweetTextBold = "r-b88u0q"
+export const tweetTextSpanClasses = [
+  "css-1qaijid",
+  "r-bcqeeo",
+  "r-qvutc0",
+  "r-1tl8opc",
+]
 
 export const tweetTextSpan = (
   text: string,
@@ -41,17 +47,18 @@ const ellipsis = () =>
   )
 
 export const tweetTextLink = (url: string) => {
-  const prePathMatch = url.match(/https?:\/\/([^\/]+)/)
+  const prePathMatch = url.match(/https?:\/\/([^/]+)/)
   if (!prePathMatch) return undefined
   const prePathRaw = prePathMatch[1]
   const pathRaw = url.substring(prePathMatch[0].length)
-  const longPrePath = prePathRaw.length >= 16
-  const longPath = pathRaw.length >= 27
 
-  const path = longPrePath ? pathRaw.substring(0, 14) : pathRaw
-  const prePath = longPath
+  const longPrePath = prePathRaw.length >= 27
+  const longPath = pathRaw.length >= 16
+
+  const prePath = longPrePath
     ? prePathRaw.substring(prePathRaw.length - 25)
     : prePathRaw
+  const path = longPath ? pathRaw.substring(0, 14) : pathRaw
   const pathString = path.length <= 1 ? prePath : prePath + path
   return a(
     {
