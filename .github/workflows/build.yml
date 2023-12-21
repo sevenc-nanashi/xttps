@@ -43,5 +43,5 @@ jobs:
           git switch release
           cp /tmp/xttps.user.js xttps.user.js
           git add xttps.user.js
-          git commit -m "Update: ${{ github.ref }}"
+          git commit -m "Update: ${{ github.sha }}"
           git push origin release
