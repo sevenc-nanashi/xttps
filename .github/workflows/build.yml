@@ -1,0 +1,39 @@
+name: Build on Tag push
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install
+        run: |
+          pnpm install
+
+      - name: Build
+        run: |
+          pnpm build
+      - name: Deploy to Releases
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            dist/pack/*.zip
+          tag_name: ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Deploy to Release branch
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git switch release

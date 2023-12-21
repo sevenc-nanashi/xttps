@@ -60,11 +60,44 @@ const pack = async (browser: "chrome" | "firefox") => {
   console.log(`Pack complete: dist/pack/xttps-${browser}.zip`)
 }
 
+const buildUserScript = async () => {
+  await build({
+    entryPoints: ["src/main.mts"],
+    outfile: "dist/xttps.user.js",
+    bundle: true,
+    minify: true,
+    sourcemap: false,
+    target: ["es2020"],
+    format: "iife",
+    banner: {
+      js: `
+      // ==UserScript==
+      // @name         Xttps
+      // @namespace    xttps
+      // @version      ${packageJson.version}
+      // @description  ${packageJson.description}
+      // @author       Nanashi.
+      // @match        https://twitter.com/*
+      // @match        https://x.com/*
+      // @icon         https://raw.githubusercontent.com/sevenc-nanashi/xttps/main/static/128.png
+      // @updateURL    https://raw.githubusercontent.com/sevenc-nanashi/xttps/release/xttps.user.js
+      // ==/UserScript==
+      `
+        .trim()
+        .split("\n")
+        .map((l) => l.trim())
+        .join("\n"),
+    },
+  })
+  console.log("Build complete: dist/xttps.user.js")
+}
+
 ;(async () => {
   console.log(`Building... (Version: ${packageJson.version})`)
   const packing = process.argv.includes("--pack")
   await buildJs("firefox", { production: packing })
   await buildJs("chrome", { production: packing })
+  await buildUserScript()
   if (packing) {
     console.log("Packing...")
     await pack("firefox")

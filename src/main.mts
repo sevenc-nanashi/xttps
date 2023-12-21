@@ -12,7 +12,7 @@ export const main = async () => {
 
   const lock = new AsyncLock()
   const replacer = new MutationObserver(async () => {
-    if (!lock.isBusy()) return
+    if (lock.isBusy()) return
     await new Promise((resolve) => requestAnimationFrame(resolve))
     lock.acquire("replace", async () => {
       const tweets = mainElement.querySelectorAll(
