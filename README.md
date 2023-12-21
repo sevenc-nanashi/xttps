@@ -23,7 +23,7 @@ TODO. Waiting for review.
 
 ### via Firefox Add-ons
 
-TODO. Waiting for review.
+The add-on is available at <https://addons.mozilla.org/ja/firefox/addon/xttps/>.
 
 ## Development
 
