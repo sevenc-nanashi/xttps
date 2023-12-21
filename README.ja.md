@@ -9,7 +9,7 @@ Tombstoneでリンクが消されるのを回避するのに使えます。
 
 ## インストール
 
-### Tampermonkey（ほとんどのブラウザ）
+### Tampermonkey経由（ほとんどのブラウザ）
 
 1. [Tampermonkey](https://www.tampermonkey.net/) をブラウザにインストールします。
 2. [xttps.user.js](https://github.com/sevenc-nanashi/xttps/raw/release/xttps.user.js) を開きます。
@@ -21,18 +21,18 @@ Tombstoneでリンクが消されるのを回避するのに使えます。
 https://raw.githubusercontent.com/sevenc-nanashi/xttps/release/xttps.user.js
 ```
 
-### Userscripts（Safari）
+### Userscripts経由（Safari）
 
 1. [Userscripts](https://itunes.apple.com/us/app/userscripts/id1463298887) をSafariにインストールします。
 2. [xttps.user.js](https://github.com/sevenc-nanashi/xttps/raw/release/xttps.user.js) を開きます。
 3. `</>` アイコン（または `ぁあ` > `</> Userscripts`）をクリック/タップします。
 4. `Userscript detected. Click (Tap) to Install.` をクリック/タップします。
 
-### Chrome Web Store（ChromeやEdgeなど）
+### Chrome Web Store経由（ChromeやEdgeなど）
 
 TODO。レビュー待ち。
 
-### Firefox Add-ons（Firefox）
+### Firefox Add-ons経由（Firefox）
 
 <https://addons.mozilla.org/ja/firefox/addon/xttps/> からインストールできます。
 
