@@ -9,13 +9,21 @@ This is useful when you want to avoid X's "Tombstone" blocker.
 
 ### via Tampermonkey
 
-1. Install [Tampermonkey](https://www.tampermonkey.net/) for your browser.
-2. Open [xttps.user.js](https://github.com/sevenc-nanashi/xttps/raw/release/xttps.user.js) and click "Install" button.
+1. Install [Tampermonkey](https://www.tampermonkey.net/) to your browser.
+2. Open [xttps.user.js](https://github.com/sevenc-nanashi/xttps/raw/release/xttps.user.js).
+3. Click "Install" button.
 
 Alternatively, you can add the script via URL in Tampermonkey dashboard (Utilities > Install from URL):
 ```
 https://raw.githubusercontent.com/sevenc-nanashi/xttps/release/xttps.user.js
 ```
+
+### via Userscripts
+
+1. Install [Userscripts](https://itunes.apple.com/us/app/userscripts/id1463298887) to your Safari.
+2. Open [xttps.user.js](https://github.com/sevenc-nanashi/xttps/raw/release/xttps.user.js).
+3. Click or Tap `</>` icon (or `AA` > `</> Userscripts`).
+4. Click or Tap `Userscript detected. Click (Tap) to Install.`
 
 ### via Chrome Web Store
 
