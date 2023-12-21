@@ -1,7 +1,7 @@
 {
   "name": "xttps",
   "version": "1.0.2",
-  "description": "Convert ttps:// links to https:// in Twitter (X)",
+  "description": "Make ttps:// links clickable in Twitter (or X)",
   "homepage": "https://github.com/sevenc-nanashi/xttps",
   "type": "module",
   "scripts": {

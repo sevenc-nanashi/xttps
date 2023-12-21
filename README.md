@@ -1,8 +1,9 @@
-# Xttps / Convert ttps:// links to https:// in Twitter (X).
+# Xttps / Make ttps:// links clickable in Twitter (or X)
 
 ![demo](./demo.png)
 
-This extension converts all ttp(s):// links to http(s):// in Twitter (X).
+This extension makes `ttps://` links clickable in Twitter.
+This is useful when you want to avoid X's "Tombstone" blocker.
 
 ## Installation
 
