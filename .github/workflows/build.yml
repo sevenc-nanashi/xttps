@@ -43,6 +43,10 @@ jobs:
           git fetch origin release
           git switch release
           cp /tmp/xttps.user.js xttps.user.js
+          if [[ -z $(git status -s) ]]; then
+            echo "No changes to commit"
+            exit 0
+          fi
           git add xttps.user.js
           git commit -m "Update: ${{ github.sha }}"
           git push origin release
