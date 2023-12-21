@@ -1,6 +1,6 @@
 # Xttps / Make ttps:// links clickable in Twitter (or X)
 
-**English** | [日本語](./README.ja.md)
+**English** / [日本語](./README.ja.md)
 
 ![demo](./demo.png)
 
