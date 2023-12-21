@@ -31,6 +31,7 @@ jobs:
         with:
           files: |
             dist/pack/*.zip
+            dist/xttps.user.js
           tag_name: ${{ github.ref_name }}
           draft: false
           prerelease: false
