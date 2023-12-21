@@ -7,7 +7,23 @@ This is useful when you want to avoid X's "Tombstone" blocker.
 
 ## Installation
 
-TODO. I'll change here when I publish this extension to Firefox Add-ons and Chrome Web Store.
+### via Tampermonkey
+
+1. Install [Tampermonkey](https://www.tampermonkey.net/) for your browser.
+2. Open [xttps.user.js](https://github.com/sevenc-nanashi/xttps/raw/release/xttps.user.js) and click "Install" button.
+
+Alternatively, you can add the script via URL in Tampermonkey dashboard (Utilities > Install from URL):
+```
+https://raw.githubusercontent.com/sevenc-nanashi/xttps/release/xttps.user.js
+```
+
+### via Chrome Web Store
+
+TODO. Waiting for review.
+
+### via Firefox Add-ons
+
+TODO. Waiting for review.
 
 ## Development
 
