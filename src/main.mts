@@ -12,9 +12,10 @@ export const main = async () => {
 
   const lock = new AsyncLock()
   const replacer = new MutationObserver(async () => {
+    if (!lock.isBusy()) return
     await new Promise((resolve) => requestAnimationFrame(resolve))
     lock.acquire("replace", async () => {
-      const tweets = document.querySelectorAll(
+      const tweets = mainElement.querySelectorAll(
         "div[data-testid='tweetText']:not([data-xttps-replaced])"
       )
       for (const tweet of Array.from(tweets)) {
