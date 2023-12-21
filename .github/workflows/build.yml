@@ -31,7 +31,7 @@ jobs:
         with:
           files: |
             dist/pack/*.zip
-          tag_name: ${{ github.ref }}
+          tag_name: ${{ github.ref_name }}
           draft: false
           prerelease: false
       - name: Deploy to Release branch
