@@ -29,7 +29,7 @@ https://raw.githubusercontent.com/sevenc-nanashi/xttps/release/xttps.user.js
 
 ### via Chrome Web Store (for Chrome, Edge, etc.)
 
-TODO. Waiting for review.
+The extension is available at <https://chrome.google.com/webstore/detail/xttps/edggfhhdbmcgfafbajdmnpmfdjalddnc>.
 
 ### via Firefox Add-ons (for Firefox)
 

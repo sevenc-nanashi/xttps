@@ -30,7 +30,7 @@ https://raw.githubusercontent.com/sevenc-nanashi/xttps/release/xttps.user.js
 
 ### Chrome Web Store経由（ChromeやEdgeなど）
 
-TODO。レビュー待ち。
+<https://chrome.google.com/webstore/detail/xttps/edggfhhdbmcgfafbajdmnpmfdjalddnc> からインストールできます。
 
 ### Firefox Add-ons経由（Firefox）
 
