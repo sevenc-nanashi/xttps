@@ -48,6 +48,9 @@ pnpm dev
 
 # Build zip
 pnpm build
+
+# Lint
+pnpm lint
 ```
 
 ## License
