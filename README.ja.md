@@ -49,6 +49,9 @@ pnpm dev
 
 # zipをビルド
 pnpm build
+
+# ESLint
+pnpm lint
 ```
 
 ## ライセンス
